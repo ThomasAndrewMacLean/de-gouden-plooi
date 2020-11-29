@@ -82,18 +82,18 @@ const Header = styled.header`
   }
 `;
 
-const NavLink = styled.a<{ active: boolean }>`
-  text-decoration: none;
-  color: unset;
-  position: relative;
-  &:after {
-    content: '';
-    display: ${(props) => (props.active ? 'block' : 'none')};
-    width: 100%;
-    height: 3px;
-    background: black;
-  }
-`;
+// const NavLink = styled.a<{ active: boolean }>`
+//   text-decoration: none;
+//   color: unset;
+//   position: relative;
+//   &:after {
+//     content: '';
+//     display: ${(props) => (props.active ? 'block' : 'none')};
+//     width: 100%;
+//     height: 3px;
+//     background: black;
+//   }
+// `;
 const Footer = styled.footer`
   display: flex;
   justify-content: space-between;
