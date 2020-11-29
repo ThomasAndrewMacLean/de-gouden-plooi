@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { PictureContext } from '../utils/contexts';
 import PropTypes from 'prop-types';
-import { getImageUrl } from '../utils';
+import { getImageUrl, getImageFileName } from '../utils';
 
 const Image = ({ imageKey, style }: { imageKey: string; style?: object }) => {
   const pics = useContext(PictureContext);
@@ -14,7 +14,7 @@ const Image = ({ imageKey, style }: { imageKey: string; style?: object }) => {
       // height={getImageHeight(pics, imageKey)}
       // width={getImageWidth(pics, imageKey)}
       src={getImageUrl(pics, imageKey, true)}
-      alt={imageKey}
+      alt={getImageFileName(pics, imageKey)}
     ></img>
   );
 };

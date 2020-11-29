@@ -34,6 +34,18 @@ export const getImageWidth = (context: any, id: string ) => {
   return  foundPic?.pic[0].thumbnails.large.width;
 };
 
+export const getImageFileName = (context: any, id: string ) => {
+  const foundPic = context.find((p: any) => p.id == id);
+
+  if (!foundPic) {
+    console.error('Picture not found!', id);
+  }
+  return  foundPic?.pic[0].filename.split(".")[0];
+};
+
+
+
+
 export const getSEO = (context: SEOType[], id: string) => {
   const foundSEO = context.find((p) => p.id == id);
 
