@@ -66,7 +66,7 @@ const Main = styled.main`
 const Plooi = styled.div<{ even: boolean }>`
   display: flex;
   flex-direction: ${(props) => (props.even ? 'row' : 'row-reverse')};
-  margin-bottom: 5rem;
+  margin-bottom: 7rem;
   p + p {
     margin-top: 1.5rem;
   }
