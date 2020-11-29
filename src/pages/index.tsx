@@ -51,7 +51,6 @@ const Main = styled.main`
     margin-bottom: 7rem;
     padding: 3rem;
     background: var(--background-light);
-    color: white;
   }
   line-height: 1.6rem;
   h2,
@@ -68,6 +67,14 @@ const Plooi = styled.div<{ even: boolean }>`
   display: flex;
   flex-direction: ${(props) => (props.even ? 'row' : 'row-reverse')};
   margin-bottom: 5rem;
+  p + p {
+    margin-top: 1.5rem;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: 'Homemade Apple';
+  }
 
   .textWrap {
     margin-right: ${(props) => (props.even ? '2rem' : '0')};
