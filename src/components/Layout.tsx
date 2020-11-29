@@ -3,21 +3,25 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import { T } from '.';
-import { prefix } from '../utils';
-import { pages } from '../constants/pages';
+// import { prefix } from '../utils';
+// import { pages } from '../constants/pages';
 
 type LayoutProps = {
   children: ReactNode;
   page: string;
 };
 const Layout = ({ children, page }: LayoutProps) => {
+  console.log(page);
   return (
     <Main>
       <Header>
-        <T translationKey="title"></T>
-        <nav>
+        <h1>
+          <T translationKey="title"></T>
+        </h1>
+
+        {/* <nav>
           <ul>
-          {pages
+            {pages
               .filter((p) => p.showInNav)
               .map((pag, i) => {
                 return (
@@ -28,14 +32,20 @@ const Layout = ({ children, page }: LayoutProps) => {
                   </li>
                 );
               })}
-        
           </ul>
-        </nav>
+        </nav> */}
       </Header>
       {children}
       <Footer>
-        <div>facebook</div>
-        <address>contact</address>
+        <a href="https://www.facebook.com/degoudenplooi" target="blank">
+          facebook
+        </a>
+        <a href="https://www.instagram.com/degoudenplooi" target="blank">
+          instagram
+        </a>
+        <a href="mailto:info@agizzles.be" target="blank">
+          email
+        </a>
       </Footer>
     </Main>
   );
@@ -47,8 +57,14 @@ const Main = styled.main`
   max-width: 900px;
 `;
 const Header = styled.header`
+  font-family: 'Homemade Apple';
+
   h1 {
     font-weight: 100;
+    strong {
+      font-weight: 100;
+      color: var(--colour-highlight);
+    }
   }
   display: flex;
   justify-content: space-between;
@@ -82,6 +98,11 @@ const Footer = styled.footer`
   display: flex;
   justify-content: space-between;
   padding: 2rem 0;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 `;
 
 Layout.propTypes = {

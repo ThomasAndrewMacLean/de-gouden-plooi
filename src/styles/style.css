@@ -1,8 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@200;400&display=swap');
-
+@font-face {
+  font-family: 'Homemade Apple';
+  src: url('../../public/HomemadeApple-Regular.woff2') format('woff2'),
+    url('../../public/HomemadeApple-Regular.woff') format('woff'),
+    url('../../public/HomemadeApple-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 :root {
   --background-dark: #77f;
   --border: 3px solid black;
+  --background-light: #00777770;
+  --colour-highlight: #c6953d;
 }
 * {
   margin: 0;
@@ -12,12 +22,13 @@
   touch-action: manipulation;
 }
 ::selection {
-  background: var(--background-light); /* WebKit/Blink Browsers */
+  background: var(--colour-highlight); /* WebKit/Blink Browsers */
+  color: white;
 }
 html,
 body {
   font-family: 'Roboto Slab', sans-serif;
-
+  color: #333;
   width: 100%;
   overflow-x: hidden;
 }
