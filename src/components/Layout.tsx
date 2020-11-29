@@ -37,15 +37,17 @@ const Layout = ({ children, page }: LayoutProps) => {
       </Header>
       {children}
       <Footer>
-        <a href="https://www.facebook.com/degoudenplooi" target="blank">
-          facebook
-        </a>
-        <a href="https://www.instagram.com/degoudenplooi" target="blank">
-          instagram
-        </a>
-        <a href="mailto:info@agizzles.be" target="blank">
-          email
-        </a>
+        <div className="footerWrap">
+          <a href="https://www.facebook.com/degoudenplooi" target="blank">
+            facebook
+          </a>
+          <a href="https://www.instagram.com/degoudenplooi" target="blank">
+            instagram
+          </a>
+          <a href="mailto:info@agizzles.be" target="blank">
+            email
+          </a>
+        </div>
       </Footer>
     </Main>
   );
@@ -95,10 +97,25 @@ const Header = styled.header`
 //   }
 // `;
 const Footer = styled.footer`
-  display: flex;
-  justify-content: space-between;
-  padding: 2rem 0;
+  .footerWrap {
+    max-width: 900px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 4rem 0;
+  }
 
+  width: 100vw;
+  background: var(--background-light);
+  left: 0;
+  margin-left: calc(450px - 50vw);
+
+  @media only screen and (max-width: 1000px) {
+    margin-left: -5vw;
+    .footerWrap {
+      padding: 3rem;
+    }
+  }
   a {
     text-decoration: none;
     color: inherit;
