@@ -23,7 +23,7 @@ const IndexPage = ({ translations, pics, seo }: IndexPageProps) => {
                 <T translationKey="uitleg"></T>
               </div>
 
-              {Array.from(Array(7)).map((_, i) => {
+              {Array.from(Array(100)).map((_, i) => {
                 if (!translations.find((x) => x.id === 'plooi' + i)) return;
                 return (
                   <Plooi even={i % 2 === 0} key={i}>
