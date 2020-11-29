@@ -16,6 +16,24 @@ export const getImageUrl = (context: any, id: string, full: boolean) => {
   return full ? foundPic?.pic[0].url : foundPic?.pic[0].thumbnails.large.url;
 };
 
+
+export const getImageHeight = (context: any, id: string) => {
+  const foundPic = context.find((p: any) => p.id == id);
+
+  if (!foundPic) {
+    console.error('Picture not found!', id);
+  }
+  return  foundPic?.pic[0].thumbnails.large.height;
+};
+export const getImageWidth = (context: any, id: string ) => {
+  const foundPic = context.find((p: any) => p.id == id);
+
+  if (!foundPic) {
+    console.error('Picture not found!', id);
+  }
+  return  foundPic?.pic[0].thumbnails.large.width;
+};
+
 export const getSEO = (context: SEOType[], id: string) => {
   const foundSEO = context.find((p) => p.id == id);
 
