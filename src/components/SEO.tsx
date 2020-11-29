@@ -15,13 +15,13 @@ const SEO = ({ seo }: { seo: SEOType[] }) => {
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
       />
 
-      <meta name="twitter:card" content="summary" />
+      {/* <meta name="twitter:card" content="summary" />
       <meta name="twitter:url" content={getSEO(seo, 'url')} />
       <meta name="twitter:title" content={getSEO(seo, 'title')} />
       <meta name="twitter:description" content={getSEO(seo, 'description')} />
       <meta name="twitter:image" content={getSEO(seo, 'twitterCard')} />
 
-      <meta name="twitter:creator" content={getSEO(seo, 'twitterName')} />
+      <meta name="twitter:creator" content={getSEO(seo, 'twitterName')} /> */}
 
       <meta property="og:type" content="website" />
       <meta property="og:title" content={getSEO(seo, 'title')} />

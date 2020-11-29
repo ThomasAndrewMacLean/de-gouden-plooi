@@ -6,7 +6,6 @@ import { getImageUrl, getImageFileName } from '../utils';
 const Image = ({ imageKey, style }: { imageKey: string; style?: object }) => {
   const pics = useContext(PictureContext);
 
-  console.log(pics);
   return (
     <img
       loading="lazy"
