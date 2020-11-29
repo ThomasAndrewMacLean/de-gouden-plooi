@@ -14,6 +14,7 @@ const Image = ({ imageKey, style }: { imageKey: string; style?: object }) => {
       // height={getImageHeight(pics, imageKey)}
       // width={getImageWidth(pics, imageKey)}
       src={getImageUrl(pics, imageKey, true)}
+      alt={imageKey}
     ></img>
   );
 };
