@@ -8,7 +8,7 @@ const Contact = ({}: PropsType) => {
     <Styles.ContactWrapper>
       <Image imageKey="contactImage"></Image>
 
-      <div className="textWrap">
+      <div className="textWrap border">
         <T translationKey="contactText" />
       </div>
     </Styles.ContactWrapper>

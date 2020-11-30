@@ -10,7 +10,7 @@
 }
 :root {
   --background-dark: #77f;
-  --border: 3px solid black;
+  --border: 3px solid #c6953d;
   --background-light: #775d0024;
   --colour-highlight: #c6953d;
 }
@@ -44,4 +44,11 @@ li {
 .showKeys {
   background: pink !important;
   color: red !important;
+}
+
+.border {
+  border: var(--border);
+  border-radius: 2rem;
+  box-shadow: 5px 5px 20px 0px #00000069;
+  padding: 3rem 4rem;
 }
