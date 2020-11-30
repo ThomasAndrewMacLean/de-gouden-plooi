@@ -51,7 +51,10 @@ const IndexPage = ({
                 <Main show={show}>
                   <SEO seo={seo}></SEO>
                   <div className="uitlegWrap">
-                    <Image imageKey="heroImage"></Image>
+                    <Image
+                      imageKey="heroImage"
+                      style={{ backgroundColor: 'var(--colour-highlight)' }}
+                    ></Image>
                     <div className="uitleg border">
                       <T translationKey="uitleg"></T>
                     </div>
