@@ -31,7 +31,11 @@ const IndexPage = ({ translations, pics, seo }: IndexPageProps) => {
                       <T translationKey={'plooi' + i}></T>
                     </div>
                     <Image
-                      style={{ width: '40%', objectFit: 'cover' }}
+                      style={{
+                        width: '40%',
+                        height: 'auto',
+                        objectFit: 'cover',
+                      }}
                       imageKey={'plooi' + i}
                     ></Image>
                   </Plooi>
