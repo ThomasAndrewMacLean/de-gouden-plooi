@@ -1,6 +1,12 @@
 import styled from 'styled-components'
 
 export const DoodgewoonWrapper = styled.div`
+
+.navigate-btn{
+    font-size: 4rem;
+    color: #333;
+    text-shadow: 0px 0px 3px white;
+}
 .imgWrap{
 
     position:relative;

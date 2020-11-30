@@ -30,8 +30,12 @@ const Doodgewoon = ({}: PropsType) => {
       <div className="imgWrap">
         <img src={doodgewoonFromContext[page].Foto[0].url}></img>
         <div className="buttonWrap">
-          <button onClick={goLeft}>◀️</button>
-          <button onClick={goRight}>▶️</button>
+          <button className="navigate-btn" onClick={goLeft}>
+            &#8592;
+          </button>
+          <button className="navigate-btn" onClick={goRight}>
+            &#8594;
+          </button>
         </div>
       </div>
       <div className="textWrap border">
@@ -41,6 +45,12 @@ const Doodgewoon = ({}: PropsType) => {
         <a href={doodgewoonFromContext[page].link} target="_blank">
           <sub>{doodgewoonFromContext[page].link}</sub>
         </a>
+
+        <div className="push-right">
+          <button className="btn" onClick={goRight}>
+            <T translationKey="volgende"></T>
+          </button>
+        </div>
       </div>
     </Styles.DoodgewoonWrapper>
   );

@@ -2,7 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 // import PropTypes from 'prop-types';
 
-import { T, Contact, Layout, SEO, Ateliers, Doodgewoon } from '../components';
+import {
+  T,
+  Contact,
+  Layout,
+  SEO,
+  Ateliers,
+  Doodgewoon,
+  Image,
+} from '../components';
 import {
   TranslationContext,
   PictureContext,
@@ -36,10 +44,8 @@ const IndexPage = ({
                 <Main>
                   <SEO seo={seo}></SEO>
                   <div className="uitlegWrap">
-                    <h1>
-                      <T translationKey="title"></T>
-                    </h1>
-                    <div className="uitleg">
+                    <Image imageKey="heroImage"></Image>
+                    <div className="uitleg border">
                       <T translationKey="uitleg"></T>
                     </div>
                   </div>
@@ -69,16 +75,18 @@ const Main = styled.main`
     margin-bottom: 5rem;
   }
   .uitlegWrap {
-    margin-bottom: 7rem;
-    padding: 3rem;
-    background: #ffffffd9;
+    img {
+      height: 400px;
+      object-fit: cover;
+    }
 
     .uitleg {
+      background: white;
       width: 60%;
       display: flex;
       flex-direction: column;
       margin-left: auto;
-      text-align: right;
+      transform: translateY(-170px);
     }
     @media only screen and (max-width: 800px) {
       .uitleg {
