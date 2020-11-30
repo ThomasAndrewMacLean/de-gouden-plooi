@@ -43,7 +43,7 @@ const Doodgewoon = ({}: PropsType) => {
         <p>{doodgewoonFromContext[page].Omschrijving}</p>
 
         <a href={doodgewoonFromContext[page].link} target="_blank">
-          <sub>{doodgewoonFromContext[page].link}</sub>
+          <sub>bron</sub>
         </a>
 
         <div className="push-right">

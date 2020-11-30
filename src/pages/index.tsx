@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 // import PropTypes from 'prop-types';
 
@@ -34,6 +34,13 @@ const IndexPage = ({
   doodgewoon,
   ateliers,
 }: IndexPageProps) => {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShow(true);
+    }, 800);
+  }, []);
   return (
     <AtelierContext.Provider value={ateliers}>
       <PictureContext.Provider value={pics}>
@@ -41,7 +48,7 @@ const IndexPage = ({
           <SEOContext.Provider value={seo}>
             <TranslationContext.Provider value={translations}>
               <Layout page="home">
-                <Main>
+                <Main show={show}>
                   <SEO seo={seo}></SEO>
                   <div className="uitlegWrap">
                     <Image imageKey="heroImage"></Image>
@@ -50,6 +57,10 @@ const IndexPage = ({
                     </div>
                   </div>
 
+                  <Image
+                    imageKey="headerImage"
+                    style={{ width: '100%', marginBottom: '5rem' }}
+                  ></Image>
                   <Ateliers />
                   <Doodgewoon />
                   <Contact />
@@ -63,7 +74,7 @@ const IndexPage = ({
   );
 };
 
-const Main = styled.main`
+const Main = styled.main<{ show: boolean }>`
   h1 {
     font-family: 'Homemade Apple';
     text-shadow: 0px 1px 3px white;
@@ -75,23 +86,48 @@ const Main = styled.main`
     margin-bottom: 5rem;
   }
   .uitlegWrap {
+    margin-bottom: 5rem;
     img {
-      height: 400px;
       object-fit: cover;
+      position: fixed;
+      transition: transform 800ms ease;
+      transform: ${(props) => props.show && 'translateY(-100%)'};
+
+      z-index: 999;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 100vh;
+      width: 100vw;
     }
 
     .uitleg {
+      position: relative;
       background: white;
       width: 60%;
       display: flex;
       flex-direction: column;
       margin-left: auto;
-      transform: translateY(-170px);
+      /* transform: translateY(-170px); */
+    }
+    .uitleg.border::before {
+      content: '';
+      width: 100%;
+      position: absolute;
+      background: var(--background-light);
+      height: 100%;
+      left: -40%;
+      z-index: -1;
+      top: -50px;
     }
     @media only screen and (max-width: 800px) {
       .uitleg {
         width: 100%;
         text-align: left;
+      }
+      .uitleg.border::before {
+        display: none;
       }
     }
   }
