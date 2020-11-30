@@ -24,3 +24,22 @@ export type SEOType = {
     };
   }[];
 };
+
+export type DoodgewoonType = {
+  Foto:{
+    url: string;
+    thumbnails: {
+      large: string;
+    };
+  }[];
+  Titel: string;
+  link: string;
+  Omschrijving: string;
+}
+
+export type AterlierType ={
+
+  Titel: string;
+  Omschrijving: string;
+  Type: string;
+}

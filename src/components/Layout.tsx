@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import { T } from '.';
+import { Image, T } from '.';
 // import { prefix } from '../utils';
 // import { pages } from '../constants/pages';
 
@@ -15,25 +15,9 @@ const Layout = ({ children, page }: LayoutProps) => {
   return (
     <Main>
       <Header>
-        <h1>
-          <T translationKey="title"></T>
-        </h1>
-
-        {/* <nav>
-          <ul>
-            {pages
-              .filter((p) => p.showInNav)
-              .map((pag, i) => {
-                return (
-                  <li key={i}>
-                    <NavLink active={page === pag.id} href={prefix + pag.url}>
-                      <T translationKey={pag.id + 'Title'}></T>
-                    </NavLink>
-                  </li>
-                );
-              })}
-          </ul>
-        </nav> */}
+        <div className="headerWrap">
+          <Image imageKey="heroImage"></Image>
+        </div>
       </Header>
       {children}
       <Footer>
@@ -59,9 +43,9 @@ const Main = styled.main`
   max-width: 900px;
 `;
 const Header = styled.header`
-  font-family: 'Homemade Apple';
-
   h1 {
+    font-family: 'Homemade Apple';
+    text-shadow: 0px 1px 3px white;
     font-weight: 100;
     strong {
       font-weight: 100;
@@ -82,20 +66,32 @@ const Header = styled.header`
       margin: 0 1rem;
     }
   }
+
+  .headerWrap {
+    width: 900px;
+    margin: auto;
+  }
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    right: 0;
+    z-index: -1;
+    height: 600px;
+    object-fit: cover;
+  }
+  width: 100vw;
+
+  left: 0;
+  margin-left: calc(450px - 50vw);
+
+  @media only screen and (max-width: 1000px) {
+    margin-left: -5vw;
+  }
 `;
 
-// const NavLink = styled.a<{ active: boolean }>`
-//   text-decoration: none;
-//   color: unset;
-//   position: relative;
-//   &:after {
-//     content: '';
-//     display: ${(props) => (props.active ? 'block' : 'none')};
-//     width: 100%;
-//     height: 3px;
-//     background: black;
-//   }
-// `;
 const Footer = styled.footer`
   .footerWrap {
     max-width: 900px;

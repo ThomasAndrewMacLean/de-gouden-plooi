@@ -1,4 +1,4 @@
-import { SEOType, TranslationsType, ImagesType } from '../types';
+import { SEOType, TranslationsType, ImagesType,DoodgewoonType, AterlierType } from '../types';
 
 export const add = (a: number, b: number): number => {
   return a + b;
@@ -65,6 +65,8 @@ export const getDataFromAirtable = async (): Promise<{
   seo: SEOType[];
   translations: TranslationsType[];
   pics: ImagesType[];
+  Doodgewoon:DoodgewoonType[];
+  Ateliers: AterlierType[];
 }> => {
   const url =
     'https://europe-west1-thomasmaclean.cloudfunctions.net/getDataAirtable';
@@ -74,11 +76,10 @@ export const getDataFromAirtable = async (): Promise<{
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ airtableApp: process.env.AIRTABLE_APP }),
+    body: JSON.stringify({ airtableApp: process.env.AIRTABLE_APP, extraCols :["Doodgewoon", "Ateliers"] }),
   });
   const dataFromAirtable = await dataFromAirtableJson.json();
-
-  return {
+   return {
     ...dataFromAirtable,
   };
 };
