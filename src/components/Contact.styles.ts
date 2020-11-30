@@ -17,7 +17,7 @@ img{
 
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 650px) {
     img{
         width: 100%;
         margin-bottom:3rem;

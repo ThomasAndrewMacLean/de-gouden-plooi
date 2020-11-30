@@ -34,13 +34,14 @@ const Doodgewoon = ({}: PropsType) => {
           <button onClick={goRight}>▶️</button>
         </div>
       </div>
+      <div className="textWrap border">
+        <h4>{doodgewoonFromContext[page].Titel}</h4>
+        <p>{doodgewoonFromContext[page].Omschrijving}</p>
 
-      <h4>{doodgewoonFromContext[page].Titel}</h4>
-      <p>{doodgewoonFromContext[page].Omschrijving}</p>
-
-      <a href={doodgewoonFromContext[page].link} target="_blank">
-        <sub>{doodgewoonFromContext[page].link}</sub>
-      </a>
+        <a href={doodgewoonFromContext[page].link} target="_blank">
+          <sub>{doodgewoonFromContext[page].link}</sub>
+        </a>
+      </div>
     </Styles.DoodgewoonWrapper>
   );
 };

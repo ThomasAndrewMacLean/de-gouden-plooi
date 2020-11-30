@@ -9,6 +9,7 @@ h4{font-family: 'Homemade Apple';}
 
 img{
     width: 100%;
+    display: flex;
 }
 
 
@@ -34,6 +35,26 @@ img{
         opacity:1;
         background: var(--background-light)
     }
+}
+
+
+
+.textWrap{
+     
+    width: 80% ;
+    
+     transform: translate(-5rem, -5rem);
+    background-color:white;
+    @media only screen and (max-width: 1070px) {
+
+transform: translate(1rem, -5rem);
+}
+@media only screen and (max-width: 650px) {
+    width: 100%;
+    transform: none;
+    margin-top: 2rem;
+}
+
 }
 
 margin-bottom:7rem;
