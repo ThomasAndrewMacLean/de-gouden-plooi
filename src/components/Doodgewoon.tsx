@@ -27,7 +27,13 @@ const Doodgewoon = ({}: PropsType) => {
       <h2>
         <T translationKey="doodgewoonHeader" />
       </h2>
-      <img src={doodgewoonFromContext[page].Foto[0].url}></img>
+      <div className="imgWrap">
+        <img src={doodgewoonFromContext[page].Foto[0].url}></img>
+        <div className="buttonWrap">
+          <button onClick={goLeft}>◀️</button>
+          <button onClick={goRight}>▶️</button>
+        </div>
+      </div>
 
       <h4>{doodgewoonFromContext[page].Titel}</h4>
       <p>{doodgewoonFromContext[page].Omschrijving}</p>
@@ -35,11 +41,6 @@ const Doodgewoon = ({}: PropsType) => {
       <a href={doodgewoonFromContext[page].link} target="_blank">
         <sub>{doodgewoonFromContext[page].link}</sub>
       </a>
-
-      <div className="buttonWrap">
-        <button onClick={goLeft}>◀️</button>
-        <button onClick={goRight}>▶️</button>
-      </div>
     </Styles.DoodgewoonWrapper>
   );
 };
