@@ -62,7 +62,11 @@ const IndexPage = ({
 
                   <Image
                     imageKey="headerImage"
-                    style={{ width: '100%', marginBottom: '5rem' }}
+                    style={{
+                      width: '100%',
+                      marginBottom: '5rem',
+                      objectFit: 'contain',
+                    }}
                   ></Image>
                   <Ateliers />
                   <Doodgewoon />
