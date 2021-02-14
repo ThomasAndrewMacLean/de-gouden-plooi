@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const AteliersWrapper = styled.div`
-  h4 {
+  .info {
     font-size: 0.8rem;
     opacity: 0.6;
   }

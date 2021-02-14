@@ -23,14 +23,14 @@ const Ateliers = ({}: PropsType) => {
               <Styles.Atelier kleur={x.Kleur} className="border" key={i}>
                 <div className="textwrap">
                   <div className="datawrap">
-                    <h4>{x.Type}</h4>
-                    <h4>
+                    <span className="info">{x.Type}</span>
+                    <span className="info">
                       {new Date(x.Datum).toLocaleDateString('nl-BE', {
                         year: 'numeric',
                         month: 'long',
                         day: 'numeric',
                       })}
-                    </h4>
+                    </span>
                   </div>
                   <h2>{x.Titel}</h2>
 
