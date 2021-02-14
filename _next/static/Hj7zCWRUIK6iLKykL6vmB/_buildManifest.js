@@ -1,1 +1,0 @@
-self.__BUILD_MANIFEST = (function(a){return {"/":[a],"/atelier/[id]":[a],"/index":[a]}}("static\u002Fchunks\u002Fcf6a2d97331ea0b05a9862aadc0ee2cc70bb4eb1.db68b354d1e3d3512f2e.js"));self.__BUILD_MANIFEST_CB && self.__BUILD_MANIFEST_CB()
