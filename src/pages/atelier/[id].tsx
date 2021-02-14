@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 // import PropTypes from 'prop-types';
 import slugify from 'slugify';
@@ -9,6 +9,8 @@ import { AterlierType, TranslationsType } from '../../types';
 import { TranslationContext } from '../../utils/contexts';
 
 const AtelierPage = ({ postData, translations }: AtelierPageProps) => {
+  const translationsFromContext = useContext(TranslationContext) || [];
+
   return (
     <TranslationContext.Provider value={translations}>
       <Layout page="home">
@@ -20,7 +22,12 @@ const AtelierPage = ({ postData, translations }: AtelierPageProps) => {
           <a
             className="btn"
             href={
-              'mailto:info@agizzles.be?subject=Registratie: ' + postData.Titel
+              'mailto:info@agizzles.be?subject=Registratie: ' +
+              postData.Titel +
+              '&body=' +
+              translationsFromContext.find((x) => x.id === 'bodyMail')?.[
+                'NL zonder opmaak'
+              ]
             }
           >
             <T translationKey="registreer" />
