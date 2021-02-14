@@ -32,19 +32,19 @@ const Layout = ({ children, page, seo }: LayoutProps) => {
         <div className="footerWrap">
           <a href={getSEO(seo, 'facebook')} target="_blank">
             <Image
-              style={{ height: '30px', width: '30px' }}
+              style={{ height: '30px', width: '30px', opacity: '0.6' }}
               imageKey="facebook"
             ></Image>
           </a>
           <a href={getSEO(seo, 'instagram')} target="_blank">
             <Image
-              style={{ height: '30px', width: '30px' }}
+              style={{ height: '30px', width: '30px', opacity: '0.6' }}
               imageKey="instagram"
             ></Image>
           </a>
           <a href="mailto:info@agizzles.be">
             <Image
-              style={{ height: '30px', width: '30px' }}
+              style={{ height: '30px', width: '30px', opacity: '0.6' }}
               imageKey="email"
             ></Image>
           </a>
