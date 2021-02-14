@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import * as Styles from './Ateliers.styles';
 import Link from 'next/link';
-import { AtelierContext, TranslationContext } from '../utils/contexts';
+import { AtelierContext } from '../utils/contexts';
 import { T } from '.';
 import slugify from 'slugify';
 
