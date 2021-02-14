@@ -18,7 +18,7 @@ import {
   DoodgewoonContext,
   AtelierContext,
 } from '../utils/contexts';
-import { getDataFromAirtable } from '../utils';
+import { getDataFromAirtable, getImageUrl } from '../utils';
 import {
   TranslationsType,
   ImagesType,
@@ -34,13 +34,7 @@ const IndexPage = ({
   doodgewoon,
   ateliers,
 }: IndexPageProps) => {
-  const [show, setShow] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setShow(true);
-    }, 800);
-  }, []);
+  const backgroundUrl = getImageUrl(pics, 'heroImage', true);
   return (
     <AtelierContext.Provider value={ateliers}>
       <PictureContext.Provider value={pics}>
@@ -48,13 +42,9 @@ const IndexPage = ({
           <SEOContext.Provider value={seo}>
             <TranslationContext.Provider value={translations}>
               <Layout page="home">
-                <Main show={show}>
+                <Main backgroundUrl={backgroundUrl}>
                   <SEO seo={seo}></SEO>
                   <div className="uitlegWrap">
-                    <Image
-                      imageKey="heroImage"
-                      style={{ backgroundColor: 'var(--colour-highlight)' }}
-                    ></Image>
                     <div className="uitleg border">
                       <T translationKey="uitleg"></T>
                     </div>
@@ -65,7 +55,8 @@ const IndexPage = ({
                     style={{
                       width: '100%',
                       marginBottom: '5rem',
-                      objectFit: 'contain',
+                      objectFit: 'cover',
+                      height: 'auto',
                     }}
                   ></Image>
                   <Ateliers />
@@ -81,7 +72,7 @@ const IndexPage = ({
   );
 };
 
-const Main = styled.main<{ show: boolean }>`
+const Main = styled.main<{ backgroundUrl: string }>`
   h1 {
     font-family: 'Homemade Apple';
     text-shadow: 0px 1px 3px white;
@@ -94,20 +85,6 @@ const Main = styled.main<{ show: boolean }>`
   }
   .uitlegWrap {
     margin-bottom: 5rem;
-    img {
-      object-fit: cover;
-      position: fixed;
-      transition: transform 800ms ease;
-      transform: ${(props) => props.show && 'translateY(-100%)'};
-
-      z-index: 999;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 100vh;
-      width: 100vw;
-    }
 
     .uitleg {
       position: relative;
@@ -122,7 +99,12 @@ const Main = styled.main<{ show: boolean }>`
       content: '';
       width: 100%;
       position: absolute;
-      background: var(--background-light);
+      background: ${(props) =>
+        `url(${props.backgroundUrl}) no-repeat center center`};
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
       height: 100%;
       left: -40%;
       z-index: -1;

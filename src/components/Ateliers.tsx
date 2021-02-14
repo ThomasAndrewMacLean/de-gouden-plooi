@@ -1,7 +1,9 @@
 import React, { useContext } from 'react';
 import * as Styles from './Ateliers.styles';
+import Link from 'next/link';
 import { AtelierContext, TranslationContext } from '../utils/contexts';
 import { T } from '.';
+import slugify from 'slugify';
 
 type PropsType = {};
 const Ateliers = ({}: PropsType) => {
@@ -24,7 +26,7 @@ const Ateliers = ({}: PropsType) => {
 
                 <p>{x.Omschrijving}</p>
               </div>
-
+              <Link href={'/atelier/' + slugify(x.Titel)}>meerinfo</Link>
               <a
                 className="btn"
                 href={
