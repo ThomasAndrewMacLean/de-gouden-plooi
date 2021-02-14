@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import { T } from '.';
+import Link from 'next/link';
 // import { prefix } from '../utils';
 // import { pages } from '../constants/pages';
 
@@ -16,7 +17,11 @@ const Layout = ({ children, page }: LayoutProps) => {
     <Main>
       <Header>
         <h1>
-          <T translationKey="title"></T>
+          <Link href="/" passHref>
+            <a>
+              <T translationKey="title"></T>
+            </a>
+          </Link>
         </h1>
       </Header>
       {children}
@@ -51,6 +56,10 @@ const Header = styled.header`
       font-weight: 100;
       color: var(--colour-highlight);
     }
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
   }
   display: flex;
   justify-content: space-between;

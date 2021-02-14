@@ -26,20 +26,11 @@ const Ateliers = ({}: PropsType) => {
 
                 <p>{x.Omschrijving}</p>
               </div>
-              <Link href={'/atelier/' + slugify(x.Titel)}>meerinfo</Link>
-              <a
-                className="btn"
-                href={
-                  'mailto:info@agizzles.be?subject=Registratie: ' +
-                  x.Titel +
-                  '&body=' +
-                  translationsFromContext.find((x) => x.id === 'bodyMail')?.[
-                    'NL zonder opmaak'
-                  ]
-                }
-              >
-                <T translationKey="registreer" />
-              </a>
+              <Link passHref href={'/atelier/' + slugify(x.Titel)}>
+                <a>
+                  <T translationKey="meerInfo"></T>
+                </a>
+              </Link>
             </Styles.Atelier>
           );
         })}

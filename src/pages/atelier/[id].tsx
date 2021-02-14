@@ -2,20 +2,32 @@ import React from 'react';
 import styled from 'styled-components';
 // import PropTypes from 'prop-types';
 import slugify from 'slugify';
-import { Layout } from '../../components';
+import { Layout, T } from '../../components';
 
 import { getDataFromAirtable } from '../../utils';
-import { AterlierType } from '../../types';
+import { AterlierType, TranslationsType } from '../../types';
+import { TranslationContext } from '../../utils/contexts';
 
-const AtelierPage = ({ postData }: AtelierPageProps) => {
+const AtelierPage = ({ postData, translations }: AtelierPageProps) => {
   return (
-    <Layout page="home">
-      <Main>
-        <h1>{postData.Titel}</h1>
-        <p>{postData.Omschrijving}</p>
-        {postData.Type}
-      </Main>
-    </Layout>
+    <TranslationContext.Provider value={translations}>
+      <Layout page="home">
+        <Main>
+          <h1>{postData.Titel}</h1>
+          <p>{postData.Omschrijving}</p>
+          {postData.Type}
+
+          <a
+            className="btn"
+            href={
+              'mailto:info@agizzles.be?subject=Registratie: ' + postData.Titel
+            }
+          >
+            <T translationKey="registreer" />
+          </a>
+        </Main>
+      </Layout>
+    </TranslationContext.Provider>
   );
 };
 
@@ -41,11 +53,13 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
   return {
     props: {
       postData,
+      translations: data.translations.filter((x) => x.id),
     },
   };
 }
 type AtelierPageProps = {
   postData: AterlierType;
+  translations: TranslationsType[];
 };
 
 export default AtelierPage;
