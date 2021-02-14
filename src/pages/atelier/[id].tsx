@@ -5,75 +5,91 @@ import slugify from 'slugify';
 import { Layout, T, SEO } from '../../components';
 
 import { getDataFromAirtable } from '../../utils';
-import { AterlierType, TranslationsType, SEOType } from '../../types';
-import { TranslationContext, SEOContext } from '../../utils/contexts';
+import {
+  AterlierType,
+  TranslationsType,
+  SEOType,
+  ImagesType,
+} from '../../types';
+import {
+  TranslationContext,
+  SEOContext,
+  PictureContext,
+} from '../../utils/contexts';
 import marked from 'marked';
 
-const AtelierPage = ({ postData, translations, seo }: AtelierPageProps) => {
+const AtelierPage = ({
+  postData,
+  translations,
+  seo,
+  pics,
+}: AtelierPageProps) => {
   const translationsFromContext = useContext(TranslationContext) || [];
 
   return (
-    <SEOContext.Provider value={seo}>
-      <TranslationContext.Provider value={translations}>
-        <Layout seo={seo} page={postData.Titel}>
-          <Main>
-            <SEO seo={seo} page={postData.Titel}></SEO>
+    <PictureContext.Provider value={pics}>
+      <SEOContext.Provider value={seo}>
+        <TranslationContext.Provider value={translations}>
+          <Layout seo={seo} page={postData.Titel}>
+            <Main>
+              <SEO seo={seo} page={postData.Titel}></SEO>
 
-            <div className="wrapper">
-              <div className="textWrap">
-                <h1>{postData.Titel}</h1>
+              <div className="wrapper">
+                <div className="textWrap">
+                  <h1>{postData.Titel}</h1>
 
-                <span className="badge">{postData.Type}</span>
-                <div className="mb-1">
-                  <span>
-                    {new Date(postData.Datum).toLocaleDateString('nl-BE', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
-                    })}{' '}
-                    -{' '}
-                    {new Date(postData.Datum).toLocaleTimeString('nl-BE', {
-                      hour: '2-digit',
-                      minute: '2-digit',
-                    })}
-                  </span>
-                  <span className="prijs">{postData.Prijs}</span>
+                  <span className="badge">{postData.Type}</span>
+                  <div className="mb-1">
+                    <span>
+                      {new Date(postData.Datum).toLocaleDateString('nl-BE', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                      })}{' '}
+                      -{' '}
+                      {new Date(postData.Datum).toLocaleTimeString('nl-BE', {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                      })}
+                    </span>
+                    <span className="prijs">{postData.Prijs}</span>
+                  </div>
+
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: marked(postData.Omschrijving),
+                    }}
+                  ></span>
                 </div>
-
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: marked(postData.Omschrijving),
+                <img
+                  src={postData.Afbeelding[0].url}
+                  style={{
+                    width: '50%',
+                    marginBottom: '5rem',
+                    objectFit: 'cover',
+                    height: 'auto',
                   }}
-                ></span>
+                ></img>
               </div>
-              <img
-                src={postData.Afbeelding[0].url}
-                style={{
-                  width: '50%',
-                  marginBottom: '5rem',
-                  objectFit: 'cover',
-                  height: 'auto',
-                }}
-              ></img>
-            </div>
 
-            <a
-              className="btn mb-4"
-              href={
-                'mailto:info@agizzles.be?subject=Registratie: ' +
-                postData.Titel +
-                '&body=' +
-                translationsFromContext.find((x) => x.id === 'bodyMail')?.[
-                  'NL zonder opmaak'
-                ]
-              }
-            >
-              <T translationKey="registreer" />
-            </a>
-          </Main>
-        </Layout>
-      </TranslationContext.Provider>
-    </SEOContext.Provider>
+              <a
+                className="btn mb-4"
+                href={
+                  'mailto:info@agizzles.be?subject=Registratie: ' +
+                  postData.Titel +
+                  '&body=' +
+                  translationsFromContext.find((x) => x.id === 'bodyMail')?.[
+                    'NL zonder opmaak'
+                  ]
+                }
+              >
+                <T translationKey="registreer" />
+              </a>
+            </Main>
+          </Layout>
+        </TranslationContext.Provider>
+      </SEOContext.Provider>
+    </PictureContext.Provider>
   );
 };
 
@@ -126,6 +142,8 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
   return {
     props: {
       postData,
+      pics: data.pics.filter((x) => x.id),
+
       translations: data.translations.filter((x) => x.id),
       seo: data.seo.filter((x) => x.id),
     },
@@ -135,6 +153,7 @@ type AtelierPageProps = {
   postData: AterlierType;
   translations: TranslationsType[];
   seo: SEOType[];
+  pics: ImagesType[];
 };
 
 export default AtelierPage;
