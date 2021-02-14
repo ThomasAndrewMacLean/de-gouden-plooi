@@ -10,65 +10,74 @@ import {
   Ateliers,
   Doodgewoon,
   Image,
+  Wie,
+  Partners,
 } from '../components';
 import {
   TranslationContext,
   PictureContext,
   SEOContext,
-  DoodgewoonContext,
   AtelierContext,
+  WieContext,
+  PartnerContext,
 } from '../utils/contexts';
 import { getDataFromAirtable, getImageUrl } from '../utils';
 import {
   TranslationsType,
   ImagesType,
   SEOType,
-  DoodgewoonType,
   AterlierType,
+  PartnerType,
+  WieType,
 } from '../types';
 
 const IndexPage = ({
   translations,
   pics,
   seo,
-  doodgewoon,
   ateliers,
+  wie,
+  partners,
 }: IndexPageProps) => {
   const backgroundUrl = getImageUrl(pics, 'heroImage', true);
   return (
-    <AtelierContext.Provider value={ateliers}>
-      <PictureContext.Provider value={pics}>
-        <DoodgewoonContext.Provider value={doodgewoon}>
-          <SEOContext.Provider value={seo}>
-            <TranslationContext.Provider value={translations}>
-              <Layout page="home">
-                <Main backgroundUrl={backgroundUrl}>
-                  <SEO seo={seo}></SEO>
-                  <div className="uitlegWrap">
-                    <div className="uitleg border">
-                      <T translationKey="uitleg"></T>
+    <WieContext.Provider value={wie}>
+      <PartnerContext.Provider value={partners}>
+        <AtelierContext.Provider value={ateliers}>
+          <PictureContext.Provider value={pics}>
+            <SEOContext.Provider value={seo}>
+              <TranslationContext.Provider value={translations}>
+                <Layout seo={seo} page="home">
+                  <Main backgroundUrl={backgroundUrl}>
+                    <SEO page="Home" seo={seo}></SEO>
+                    <div className="uitlegWrap">
+                      <div className="uitleg border">
+                        <T translationKey="uitleg"></T>
+                      </div>
                     </div>
-                  </div>
 
-                  <Image
-                    imageKey="headerImage"
-                    style={{
-                      width: '100%',
-                      marginBottom: '5rem',
-                      objectFit: 'cover',
-                      height: 'auto',
-                    }}
-                  ></Image>
-                  <Ateliers />
-                  <Doodgewoon />
-                  <Contact />
-                </Main>
-              </Layout>
-            </TranslationContext.Provider>
-          </SEOContext.Provider>
-        </DoodgewoonContext.Provider>
-      </PictureContext.Provider>
-    </AtelierContext.Provider>
+                    <Image
+                      imageKey="headerImage"
+                      style={{
+                        width: '100%',
+                        marginBottom: '5rem',
+                        objectFit: 'cover',
+                        height: 'auto',
+                      }}
+                    ></Image>
+                    <Ateliers />
+                    <Doodgewoon />
+                    <Contact />
+                    <Wie />
+                    <Partners></Partners>
+                  </Main>
+                </Layout>
+              </TranslationContext.Provider>
+            </SEOContext.Provider>
+          </PictureContext.Provider>
+        </AtelierContext.Provider>
+      </PartnerContext.Provider>
+    </WieContext.Provider>
   );
 };
 
@@ -139,8 +148,9 @@ export const getStaticProps = async () => {
       translations: data.translations.filter((x) => x.id),
       pics: data.pics.filter((x) => x.id),
       seo: data.seo.filter((x) => x.id),
-      doodgewoon: data.Doodgewoon.filter((x) => x.Titel),
       ateliers: data.Ateliers.filter((x) => x.Titel),
+      partners: data.Partner.filter((x) => x.Link),
+      wie: data.Wie.filter((x) => x.Naam),
     },
   };
 };
@@ -149,8 +159,9 @@ type IndexPageProps = {
   translations: TranslationsType[];
   pics: ImagesType[];
   seo: SEOType[];
-  doodgewoon: DoodgewoonType[];
   ateliers: AterlierType[];
+  partners: PartnerType[];
+  wie: WieType[];
 };
 
 export default IndexPage;

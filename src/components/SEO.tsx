@@ -5,10 +5,12 @@ import PropTypes from 'prop-types';
 import { getSEO } from '../utils';
 import { SEOType } from '../types';
 
-const SEO = ({ seo }: { seo: SEOType[] }) => {
+const SEO = ({ seo, page }: { seo: SEOType[]; page: string }) => {
   return (
     <Head>
-      <title>{getSEO(seo, 'title')}</title>
+      <title>
+        {getSEO(seo, 'title')} | {page}
+      </title>
       <link rel="shortcut icon" href={getSEO(seo, 'favicon')} />
       <meta
         name="viewport"

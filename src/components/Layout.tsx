@@ -2,16 +2,19 @@ import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import { T } from '.';
+import { T, Image } from '.';
 import Link from 'next/link';
+import { SEOType } from '../types';
+import { getSEO } from '../utils';
 // import { prefix } from '../utils';
 // import { pages } from '../constants/pages';
 
 type LayoutProps = {
   children: ReactNode;
   page: string;
+  seo: SEOType[];
 };
-const Layout = ({ children, page }: LayoutProps) => {
+const Layout = ({ children, page, seo }: LayoutProps) => {
   console.log(page);
   return (
     <Main>
@@ -27,15 +30,27 @@ const Layout = ({ children, page }: LayoutProps) => {
       {children}
       <Footer>
         <div className="footerWrap">
-          <a href="https://www.facebook.com/degoudenplooi" target="blank">
-            facebook
+          <a href={getSEO(seo, 'facebook')} target="_blank">
+            <Image
+              style={{ height: '30px', width: '30px' }}
+              imageKey="facebook"
+            ></Image>
           </a>
-          <a href="https://www.instagram.com/degoudenplooi" target="blank">
-            instagram
+          <a href={getSEO(seo, 'instagram')} target="_blank">
+            <Image
+              style={{ height: '30px', width: '30px' }}
+              imageKey="instagram"
+            ></Image>
           </a>
-          <a href="mailto:info@agizzles.be" target="blank">
-            email
+          <a href="mailto:info@agizzles.be">
+            <Image
+              style={{ height: '30px', width: '30px' }}
+              imageKey="email"
+            ></Image>
           </a>
+        </div>
+        <div className="footerText">
+          <T translationKey="footerText"></T>
         </div>
       </Footer>
     </Main>
@@ -87,6 +102,13 @@ const Footer = styled.footer`
   left: 0;
   margin-left: calc(450px - 50vw);
 
+  .footerText {
+    text-align: center;
+    font-size: 0.8rem;
+    p {
+      margin-top: 10px;
+    }
+  }
   @media only screen and (max-width: 1000px) {
     margin-left: -5vw;
     .footerWrap {

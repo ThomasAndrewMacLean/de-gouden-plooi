@@ -2,43 +2,109 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 // import PropTypes from 'prop-types';
 import slugify from 'slugify';
-import { Layout, T } from '../../components';
+import { Layout, T, SEO } from '../../components';
 
 import { getDataFromAirtable } from '../../utils';
-import { AterlierType, TranslationsType } from '../../types';
-import { TranslationContext } from '../../utils/contexts';
+import { AterlierType, TranslationsType, SEOType } from '../../types';
+import { TranslationContext, SEOContext } from '../../utils/contexts';
+import marked from 'marked';
 
-const AtelierPage = ({ postData, translations }: AtelierPageProps) => {
+const AtelierPage = ({ postData, translations, seo }: AtelierPageProps) => {
   const translationsFromContext = useContext(TranslationContext) || [];
 
   return (
-    <TranslationContext.Provider value={translations}>
-      <Layout page="home">
-        <Main>
-          <h1>{postData.Titel}</h1>
-          <p>{postData.Omschrijving}</p>
-          {postData.Type}
+    <SEOContext.Provider value={seo}>
+      <TranslationContext.Provider value={translations}>
+        <Layout seo={seo} page={postData.Titel}>
+          <Main>
+            <SEO seo={seo} page={postData.Titel}></SEO>
 
-          <a
-            className="btn"
-            href={
-              'mailto:info@agizzles.be?subject=Registratie: ' +
-              postData.Titel +
-              '&body=' +
-              translationsFromContext.find((x) => x.id === 'bodyMail')?.[
-                'NL zonder opmaak'
-              ]
-            }
-          >
-            <T translationKey="registreer" />
-          </a>
-        </Main>
-      </Layout>
-    </TranslationContext.Provider>
+            <div className="wrapper">
+              <div className="textWrap">
+                <h1>{postData.Titel}</h1>
+
+                <span className="badge">{postData.Type}</span>
+                <div className="mb-1">
+                  <span>
+                    {new Date(postData.Datum).toLocaleDateString('nl-BE', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })}{' '}
+                    -{' '}
+                    {new Date(postData.Datum).toLocaleTimeString('nl-BE', {
+                      hour: '2-digit',
+                      minute: '2-digit',
+                    })}
+                  </span>
+                  <span className="prijs">{postData.Prijs}</span>
+                </div>
+
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: marked(postData.Omschrijving),
+                  }}
+                ></span>
+              </div>
+              <img
+                src={postData.Afbeelding[0].url}
+                style={{
+                  width: '50%',
+                  marginBottom: '5rem',
+                  objectFit: 'cover',
+                  height: 'auto',
+                }}
+              ></img>
+            </div>
+
+            <a
+              className="btn mb-4"
+              href={
+                'mailto:info@agizzles.be?subject=Registratie: ' +
+                postData.Titel +
+                '&body=' +
+                translationsFromContext.find((x) => x.id === 'bodyMail')?.[
+                  'NL zonder opmaak'
+                ]
+              }
+            >
+              <T translationKey="registreer" />
+            </a>
+          </Main>
+        </Layout>
+      </TranslationContext.Provider>
+    </SEOContext.Provider>
   );
 };
 
-const Main = styled.main``;
+const Main = styled.main`
+  .prijs {
+    font-weight: bolder;
+    margin-left: 2rem;
+  }
+  .wrapper {
+    display: flex;
+  }
+  .textWrap {
+    padding-right: 1rem;
+    h1 {
+      margin-bottom: 2rem;
+    }
+  }
+
+  @media only screen and (max-width: 800px) {
+    .wrapper {
+      flex-direction: column;
+    }
+    .textWrap {
+      padding-right: 0rem;
+      padding-bottom: 2rem;
+    }
+    img {
+      width: 100% !important;
+    }
+  }
+`;
 
 export async function getStaticPaths() {
   // Return a list of possible value for id
@@ -61,12 +127,14 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
     props: {
       postData,
       translations: data.translations.filter((x) => x.id),
+      seo: data.seo.filter((x) => x.id),
     },
   };
 }
 type AtelierPageProps = {
   postData: AterlierType;
   translations: TranslationsType[];
+  seo: SEOType[];
 };
 
 export default AtelierPage;

@@ -8,7 +8,6 @@ import slugify from 'slugify';
 type PropsType = {};
 const Ateliers = ({}: PropsType) => {
   const ateliersFromContext = useContext(AtelierContext) || [];
-  const translationsFromContext = useContext(TranslationContext) || [];
 
   return (
     <>
@@ -17,23 +16,34 @@ const Ateliers = ({}: PropsType) => {
       </h2>
 
       <Styles.AteliersWrapper>
-        {ateliersFromContext.map((x, i) => {
-          return (
-            <Styles.Atelier className="border" key={i}>
-              <div className="textwrap">
-                <h4>{x.Type}</h4>
-                <h2>{x.Titel}</h2>
+        {ateliersFromContext
+          .filter((x) => !x.Focus)
+          .map((x, i) => {
+            return (
+              <Styles.Atelier kleur={x.Kleur} className="border" key={i}>
+                <div className="textwrap">
+                  <div className="datawrap">
+                    <h4>{x.Type}</h4>
+                    <h4>
+                      {new Date(x.Datum).toLocaleDateString('nl-BE', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                      })}
+                    </h4>
+                  </div>
+                  <h2>{x.Titel}</h2>
 
-                <p>{x.Omschrijving}</p>
-              </div>
-              <Link passHref href={'/atelier/' + slugify(x.Titel)}>
-                <a>
-                  <T translationKey="meerInfo"></T>
-                </a>
-              </Link>
-            </Styles.Atelier>
-          );
-        })}
+                  <p>{x.Omschrijving}</p>
+                </div>
+                <Link passHref href={'/atelier/' + slugify(x.Titel)}>
+                  <a className="btn">
+                    <T translationKey="meerInfo"></T>
+                  </a>
+                </Link>
+              </Styles.Atelier>
+            );
+          })}
       </Styles.AteliersWrapper>
     </>
   );

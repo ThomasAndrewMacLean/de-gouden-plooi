@@ -28,15 +28,18 @@ export const AteliersWrapper = styled.div`
   }
 `;
 
-export const Atelier = styled.div`
+export const Atelier = styled.div<{ kleur: string }>`
   padding: 2rem !important;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border-color: grey !important;
+  border-color: ${(props) => `${props.kleur} !important`};
 
   padding: 2rem;
-
+  .datawrap {
+    display: flex;
+    justify-content: space-between;
+  }
   a {
     margin-top: 2rem;
     width: 100%;

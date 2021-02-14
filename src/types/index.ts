@@ -25,21 +25,42 @@ export type SEOType = {
   }[];
 };
 
-export type DoodgewoonType = {
-  Foto:{
+export type AterlierType = {
+  Titel: string;
+  Omschrijving: string;
+  Type: string;
+  Kleur: string;
+  CopywriteLink: string;
+  Focus: boolean;
+  Prijs: string;
+  Datum: Date;
+  Afbeelding: {
     url: string;
     thumbnails: {
       large: string;
     };
   }[];
-  Titel: string;
-  link: string;
-  Omschrijving: string;
-}
+};
 
-export type AterlierType ={
+export type WieType = {
+  Naam: string;
+  Info: string;
+  Email: string;
+  Foto: {
+    url: string;
+    thumbnails: {
+      large: string;
+    };
+  }[];
+};
 
-  Titel: string;
-  Omschrijving: string;
-  Type: string;
-}
+export type PartnerType = {
+  Link: string;
+  Naam: string;
+  Logo: {
+    url: string;
+    thumbnails: {
+      large: string;
+    };
+  }[];
+};

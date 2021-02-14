@@ -1,59 +1,40 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import * as Styles from './Doodgewoon.styles';
-import { DoodgewoonContext } from '../utils/contexts';
+import { AtelierContext } from '../utils/contexts';
 import { T } from '.';
+import slugify from 'slugify';
+import Link from 'next/link';
 
 type PropsType = {};
 const Doodgewoon = ({}: PropsType) => {
-  const [page, setPage] = useState(0);
-  const doodgewoonFromContext = useContext(DoodgewoonContext) || [];
-  const goLeft = () => {
-    if (page === 0) {
-      setPage(doodgewoonFromContext.length - 1);
-    } else {
-      setPage(page - 1);
-    }
-  };
+  const doodgewoonFromContext = useContext(AtelierContext) || [];
+  const focus = doodgewoonFromContext.find((x) => x.Focus);
 
-  const goRight = () => {
-    if (page === doodgewoonFromContext.length - 1) {
-      setPage(0);
-    } else {
-      setPage(page + 1);
-    }
-  };
-  return (
+  return focus ? (
     <Styles.DoodgewoonWrapper>
       <h2>
         <T translationKey="doodgewoonHeader" />
       </h2>
       <div className="imgWrap">
-        <img src={doodgewoonFromContext[page].Foto[0].url}></img>
-        <div className="buttonWrap">
-          <button className="navigate-btn" onClick={goLeft}>
-            &#8592;
-          </button>
-          <button className="navigate-btn" onClick={goRight}>
-            &#8594;
-          </button>
-        </div>
+        <img src={focus.Afbeelding[0].url}></img>
       </div>
       <div className="textWrap border">
-        <h4>{doodgewoonFromContext[page].Titel}</h4>
-        <p>{doodgewoonFromContext[page].Omschrijving}</p>
+        <h4>{focus.Titel}</h4>
+        <p>{focus.Omschrijving}</p>
 
-        <a href={doodgewoonFromContext[page].link} target="_blank">
+        <a href={focus.CopywriteLink} target="_blank">
           <sub>bron</sub>
         </a>
-
         <div className="push-right">
-          <button className="btn" onClick={goRight}>
-            <T translationKey="volgende"></T>
-          </button>
+          <Link passHref href={'/atelier/' + slugify(focus.Titel)}>
+            <a className="btn">
+              <T translationKey="meerInfo"></T>
+            </a>
+          </Link>
         </div>
       </div>
     </Styles.DoodgewoonWrapper>
-  );
+  ) : null;
 };
 
 export default Doodgewoon;
