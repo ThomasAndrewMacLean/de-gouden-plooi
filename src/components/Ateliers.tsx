@@ -16,34 +16,32 @@ const Ateliers = ({}: PropsType) => {
       </h2>
 
       <Styles.AteliersWrapper>
-        {ateliersFromContext
-          .filter((x) => !x.Focus)
-          .map((x, i) => {
-            return (
-              <Styles.Atelier kleur={x.Kleur} className="border" key={i}>
-                <div className="textwrap">
-                  <div className="datawrap">
-                    <span className="info">{x.Type}</span>
-                    <span className="info">
-                      {new Date(x.Datum).toLocaleDateString('nl-BE', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                      })}
-                    </span>
-                  </div>
-                  <h2>{x.Titel}</h2>
-
-                  <p>{x.Omschrijving}</p>
+        {ateliersFromContext.map((x, i) => {
+          return (
+            <Styles.Atelier kleur={x.Kleur} className="border" key={i}>
+              <div className="textwrap">
+                <div className="datawrap">
+                  <span className="info">{x.Type}</span>
+                  <span className="info">
+                    {new Date(x.Datum).toLocaleDateString('nl-BE', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })}
+                  </span>
                 </div>
-                <Link passHref href={'/atelier/' + slugify(x.Titel)}>
-                  <a className="btn">
-                    <T translationKey="meerInfo"></T>
-                  </a>
-                </Link>
-              </Styles.Atelier>
-            );
-          })}
+                <h2>{x.Titel}</h2>
+
+                <p>{x.Omschrijving}</p>
+              </div>
+              <Link passHref href={'/atelier/' + slugify(x.Titel)}>
+                <a className="btn">
+                  <T translationKey="meerInfo"></T>
+                </a>
+              </Link>
+            </Styles.Atelier>
+          );
+        })}
       </Styles.AteliersWrapper>
     </>
   );
