@@ -7,3 +7,4 @@ export { default as Doodgewoon } from './Doodgewoon';
 export { default as Contact } from './Contact';
 export { default as Wie } from './Wie';
 export { default as Partners } from './Partners'
+export { default as Slideshow } from './Slideshow'

@@ -78,7 +78,7 @@ const AtelierPage = ({
                   'mailto:info@agizzles.be?subject=Registratie: ' +
                   postData.Titel +
                   '&body=' +
-                  translationsFromContext.find((x) => x.id === 'bodyMail')?.[
+                  translations.find((x) => x.id === 'bodyMail')?.[
                     'NL zonder opmaak'
                   ]
                 }

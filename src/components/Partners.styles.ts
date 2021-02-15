@@ -21,4 +21,6 @@ export const PartnersWrapper = styled.div`
     object-fit: contain;
     height: 75px;
   }
+  margin-bottom:4rem;
+
 `;

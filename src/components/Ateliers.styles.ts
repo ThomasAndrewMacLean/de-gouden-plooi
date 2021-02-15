@@ -39,6 +39,7 @@ export const Atelier = styled.div<{ kleur: string }>`
   .datawrap {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 10px;
   }
   a {
     margin-top: 2rem;

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { PartnerContext } from '../utils/contexts';
 import * as Styles from './Partners.styles';
-import { T } from './';
+//import { T } from './';
 
 type PropsType = {};
 const Partners = ({}: PropsType) => {
@@ -10,9 +10,9 @@ const Partners = ({}: PropsType) => {
   if (partnersFromContext.length === 0) return null;
   return (
     <Styles.PartnersWrapper>
-      <h2>
+      {/* <h2>
         <T translationKey="partnersHeader"></T>
-      </h2>
+      </h2> */}
 
       <ul>
         {partnersFromContext.map((x, i) => {

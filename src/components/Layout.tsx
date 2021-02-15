@@ -78,8 +78,11 @@ const Header = styled.header`
   }
   display: flex;
   justify-content: space-between;
-  padding: 4rem 0;
+  padding: 4rem 0 8rem;
 
+  @media only screen and (max-width: 800px) {
+    padding: 4rem 0 4rem;
+  }
   img {
     width: 100%;
 
@@ -90,7 +93,7 @@ const Header = styled.header`
 
 const Footer = styled.footer`
   .footerWrap {
-    max-width: 900px;
+    max-width: 500px;
     margin: auto;
     display: flex;
     justify-content: space-between;
@@ -104,6 +107,7 @@ const Footer = styled.footer`
 
   .footerText {
     text-align: center;
+    padding-bottom: 1rem;
     font-size: 0.8rem;
     p {
       margin-top: 10px;

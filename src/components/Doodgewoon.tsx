@@ -8,7 +8,7 @@ import Link from 'next/link';
 type PropsType = {};
 const Doodgewoon = ({}: PropsType) => {
   const doodgewoonFromContext = useContext(AtelierContext) || [];
-  const focus = doodgewoonFromContext.find((x) => x.Focus);
+  const focus = doodgewoonFromContext.find((x) => x);
 
   return focus ? (
     <Styles.DoodgewoonWrapper>

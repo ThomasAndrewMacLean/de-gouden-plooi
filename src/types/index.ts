@@ -6,6 +6,7 @@ export type TranslationsType = {
 
 export type ImagesType = {
   id: string;
+  inSlideShow: boolean;
   pic: {
     url: string;
     thumbnails: {
@@ -31,7 +32,6 @@ export type AterlierType = {
   Type: string;
   Kleur: string;
   CopywriteLink: string;
-  Focus: boolean;
   Prijs: string;
   Datum: Date;
   Afbeelding: {

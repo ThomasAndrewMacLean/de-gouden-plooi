@@ -8,8 +8,7 @@ import {
   Layout,
   SEO,
   Ateliers,
-  Doodgewoon,
-  Image,
+  Slideshow,
   Wie,
   Partners,
 } from '../components';
@@ -55,8 +54,8 @@ const IndexPage = ({
                         <T translationKey="uitleg"></T>
                       </div>
                     </div>
-
-                    <Image
+                    <Slideshow images={pics}></Slideshow>
+                    {/* <Image
                       imageKey="headerImage"
                       style={{
                         width: '100%',
@@ -64,9 +63,8 @@ const IndexPage = ({
                         objectFit: 'cover',
                         height: 'auto',
                       }}
-                    ></Image>
+                    ></Image> */}
                     <Ateliers />
-                    <Doodgewoon />
                     <Contact />
                     <Wie />
                     <Partners></Partners>

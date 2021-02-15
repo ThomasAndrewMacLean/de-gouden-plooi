@@ -59,6 +59,11 @@ p {
   box-shadow: 5px 5px 30px -10px #00000069;
   padding: 3rem 4rem;
 }
+@media only screen and (max-width: 800px) {
+  .border {
+    padding: 2rem 2rem;
+  }
+}
 
 .push-right {
   display: flex;
@@ -115,4 +120,8 @@ p {
 }
 .mt-2 {
   margin-top: 2rem;
+}
+
+.carousel .slide {
+  background-color: white !important;
 }
