@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 // import PropTypes from 'prop-types';
 import slugify from 'slugify';
@@ -24,8 +24,6 @@ const AtelierPage = ({
   seo,
   pics,
 }: AtelierPageProps) => {
-  const translationsFromContext = useContext(TranslationContext) || [];
-
   return (
     <PictureContext.Provider value={pics}>
       <SEOContext.Provider value={seo}>
